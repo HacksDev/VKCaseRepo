@@ -5,17 +5,17 @@ import { Root } from '@vkontakte/vkui';
 import Onboarding from './screens/onboarding/Onboarding';
 import Auth from './screens/auth/Auth';
 import Map from './screens/map/Map';
-import Profile from './screens/profile/Profile';
+import ProfileWrapper from './screens/profile/ProfileWrapper';
 
 const App = () => {
 
 	let startScreen = "start";
-	// if (localStorage.getItem("again") !== null) {
-	// 	startScreen = "auth"
-	// } else {
-	// 	localStorage.setItem("again", 1)
-	// 	startScreen = "start";
-	// }
+	if (localStorage.getItem("again") !== null) {
+		startScreen = "auth"
+	} else {
+		localStorage.setItem("again", 1)
+		startScreen = "start";
+	}
 
 	const [activeView, setActiveView] = useState(startScreen);
 	
@@ -28,7 +28,7 @@ const App = () => {
 			<Onboarding goToView={goToView} id="start"></Onboarding>
 			<Auth goToView={goToView} id="auth"></Auth>
 			<Map goToView={goToView} id="map"></Map>
-			<Profile goToView={goToView} id="profile"></Profile>
+			<ProfileWrapper goToView={goToView} id="profile"></ProfileWrapper>
 		</Root>
 	);
 }

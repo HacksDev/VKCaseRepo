@@ -3,7 +3,7 @@ import Photographer from './Photographer';
 import { View, Panel } from '@vkontakte/vkui';
 import BottomBar from '../common/BottomBar';
 
-const Profile = ({ goToView }) => {
+const ProfileWrapper = ({ goToView }) => {
     return (
         <View activePanel="main">
             <Panel id="main">
@@ -15,4 +15,4 @@ const Profile = ({ goToView }) => {
 
 }
 
-export default Profile
+export default ProfileWrapper

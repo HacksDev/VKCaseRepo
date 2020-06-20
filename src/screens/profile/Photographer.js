@@ -1,7 +1,7 @@
 import React from 'react'
-import { RichCell, Avatar, Button, Separator, Group, CardGrid, Card, Title, SimpleCell } from '@vkontakte/vkui';
-import Icon28InfoOutline from '@vkontakte/icons/dist/28/info_outline';
+import { RichCell, Avatar, Button, Separator, Group, CardGrid, Card, Title, SimpleCell, Div} from '@vkontakte/vkui';
 import phgrProgile from '../../img/phgr-profile.png'
+import Icon28InfoOutline from '@vkontakte/icons/dist/28/info_outline';
 import Icon24Favorite from '@vkontakte/icons/dist/24/favorite';
 import Icon28TagOutline from '@vkontakte/icons/dist/28/tag_outline';
 import Icon16Place from '@vkontakte/icons/dist/16/place';
@@ -19,15 +19,8 @@ const lineStyle = {
     justifyContent: "space-between"
 }
 
-const ButtonStyle = {
-    position: "absolute",
-    bottom: "5%",
-    width: "90%",
-    left: "5%"
-}
 
-
-const Photographer = ({isActive}) => {
+const Photographer = ({ isActive }) => {
 
 
 
@@ -52,6 +45,10 @@ const Photographer = ({isActive}) => {
             <SimpleCell before={<Icon28CameraOutline />}>Canon 5D Mark2</SimpleCell>
             <SimpleCell before={<Icon28PaletteOutline />}>Могу ретушировать</SimpleCell>
 
+
+            <Div>
+                {Boolean(isActive) && <Button mode="commerce" size="xl" before={<Icon28DoneOutline />}>Выбрать фотографа</Button>}
+            </Div>
 
             <Group separator="hide">
                 <CardGrid>
@@ -89,8 +86,7 @@ const Photographer = ({isActive}) => {
                 </CardGrid>
             </Group>
 
-            {Boolean(isActive) && <Button mode="commerce" size="xl" style={ButtonStyle} before={<Icon28DoneOutline/>}>Выбрать фотографа</Button>}
-        
+
 
         </React.Fragment>
     )

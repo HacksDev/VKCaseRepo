@@ -1,24 +1,18 @@
 import React, { useState } from 'react';
 import '@vkontakte/vkui/dist/vkui.css';
-import { View, Panel, Button, ModalRoot, ModalPage, PanelHeaderButton, ModalPageHeader, FormLayoutGroup, Radio, Div, Group } from '@vkontakte/vkui';
-import { RichCell, Avatar } from '@vkontakte/vkui';
-import YMap from './YMap'
-import BottomBar from '../common/BottomBar';
-import Photograhper from '../profile/Photographer'
-import Icon24Cancel from '@vkontakte/icons/dist/24/cancel';
-import Icon16Place from '@vkontakte/icons/dist/16/place';
-import phgrProgile from '../../img/phgr-profile.png'
+import { View, Panel, Button, PanelHeader } from '@vkontakte/vkui';
 import Icon24Favorite from '@vkontakte/icons/dist/24/favorite';
-import Icon28TagOutline from '@vkontakte/icons/dist/28/tag_outline';
+import Icon28InfoOutline from '@vkontakte/icons/dist/28/info_outline';
+
+import BottomBar from '../common/BottomBar';
+import TopBarProfile from './TopBarProfile';
+import TopBarNotification from './TopBarBotification';
+import MapModal from '../modals/MapModal';
 import Label from '../common/Label';
+import YMap from './YMap'
 
-
-const ButtonStyle = {
-    position: "absolute",
-    bottom: "10vh",
-    width: "90%",
-    left: "5%"
-}
+import phgrProfile from '../../img/phgr-profile.png'
+import './map.css'
 
 const Map = ({ id, goToView }) => {
     const [activeModal, setActiveModal] = useState(null);
@@ -35,119 +29,51 @@ const Map = ({ id, goToView }) => {
         setActiveModal("photograhper")
     }
 
-    const modal = (
-        <ModalRoot activeModal={activeModal} >
-            <ModalPage id="photograhper"
-                onClose={closeModal}
-                header={
-                    <ModalPageHeader
-                        left={<PanelHeaderButton onClick={closeModal}><Icon24Cancel /></PanelHeaderButton>}
-                    >Фотограф</ModalPageHeader>
-                }
-            >
-                <Photograhper isActive={true}></Photograhper>
-            </ModalPage>
-            <ModalPage id="time"
-                onClose={closeModal}
-                header={
-                    <ModalPageHeader
-                        left={<PanelHeaderButton onClick={closeModal}><Icon24Cancel /></PanelHeaderButton>}
-                    >Выберите время съемки</ModalPageHeader>}>
-                <FormLayoutGroup>
-                    <Radio name="sex" defaultChecked>5 минут</Radio>
-                    <Radio name="sex" >15 минут</Radio>
-                    <Radio name="sex" >30 минут</Radio>
-                    <Radio name="sex" >1 час</Radio>
-                </FormLayoutGroup>
-                <Div>
-                    <Button size="xl" onClick={changeModal} data-modal="search">Начать поиск</Button>
-                </Div>
-            </ModalPage>
-            <ModalPage id="search"
-                onClose={closeModal}
-                header={
-                    <ModalPageHeader
-                        left={<PanelHeaderButton onClick={closeModal}><Icon24Cancel /></PanelHeaderButton>}
-                    >Поиск фотографа</ModalPageHeader>}>
-                <Group>
-                    <RichCell
-                        disabled
-                        multiline
-                        before={<Avatar size={64} src={phgrProgile} />}
-                        text={<Label icon={<Icon24Favorite width={16} fill={"#FFA000"} />} text="4.7"></Label>}
-                        after={<Button mode="commerce">Принять</Button>}
-                        caption={<Label icon={<Icon28TagOutline width={16} />} text="200 ₽/час"></Label>}>
-                        <Label icon={<Icon16Place fill={"#99A2AD"} />} text="Илья Гришин"></Label>
-                    </RichCell>
-                    <RichCell
-                        disabled
-                        multiline
-                        before={<Avatar size={64} src={phgrProgile} />}
-                        text={<Label icon={<Icon24Favorite width={16} fill={"#FFA000"} />} text="4.7"></Label>}
-                        after={<Button mode="commerce">Принять</Button>}
-                        caption={<Label icon={<Icon28TagOutline width={16} />} text="200 ₽/час"></Label>}>
-                        <Label icon={<Icon16Place fill={"#99A2AD"} />} text="Илья Гришин"></Label>
-                    </RichCell>
-                    <RichCell
-                        disabled
-                        multiline
-                        before={<Avatar size={64} src={phgrProgile} />}
-                        text={<Label icon={<Icon24Favorite width={16} fill={"#FFA000"} />} text="4.7"></Label>}
-                        after={<Button mode="commerce">Принять</Button>}
-                        caption={<Label icon={<Icon28TagOutline width={16} />} text="200 ₽/час"></Label>}>
-                        <Label icon={<Icon16Place fill={"#99A2AD"} />} text="Илья Гришин"></Label>
-                    </RichCell>
-                    <RichCell
-                        disabled
-                        multiline
-                        before={<Avatar size={64} src={phgrProgile} />}
-                        text={<Label icon={<Icon24Favorite width={16} fill={"#FFA000"} />} text="4.7"></Label>}
-                        after={<Button mode="commerce">Принять</Button>}
-                        caption={<Label icon={<Icon28TagOutline width={16} />} text="200 ₽/час"></Label>}>
-                        <Label icon={<Icon16Place fill={"#99A2AD"} />} text="Илья Гришин"></Label>
-                    </RichCell>
-                    <RichCell
-                        disabled
-                        multiline
-                        before={<Avatar size={64} src={phgrProgile} />}
-                        text={<Label icon={<Icon24Favorite width={16} fill={"#FFA000"} />} text="4.7"></Label>}
-                        after={<Button mode="commerce">Принять</Button>}
-                        caption={<Label icon={<Icon28TagOutline width={16} />} text="200 ₽/час"></Label>}>
-                        <Label icon={<Icon16Place fill={"#99A2AD"} />} text="Илья Гришин"></Label>
-                    </RichCell>
-                    <RichCell
-                        disabled
-                        multiline
-                        before={<Avatar size={64} src={phgrProgile} />}
-                        text={<Label icon={<Icon24Favorite width={16} fill={"#FFA000"} />} text="4.7"></Label>}
-                        after={<Button mode="commerce">Принять</Button>}
-                        caption={<Label icon={<Icon28TagOutline width={16} />} text="200 ₽/час"></Label>}>
-                        <Label icon={<Icon16Place fill={"#99A2AD"} />} text="Илья Гришин"></Label>
-                    </RichCell>
-                    
-                    
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
 
 
+    const profileTopBar = <TopBarProfile
+        name="Илья Гришин"
+        rightIcon={<Icon28InfoOutline />}
+        avatarPicture={phgrProfile}
+        smallCaption={<Label icon={<Icon24Favorite width={16} fill={"#FFA000"} />} text="4.7"></Label>}
+    />
+    const notificationTopBar = <TopBarNotification
+        title="Заказ отменен!"
+    />;
+    const clearTopBar = null;
+    const [topBar, setTopBar] = useState(notificationTopBar);
 
-                </Group>
-            </ModalPage>
 
-        </ModalRoot>
-    );
+    const [nextModal, setNextModal] = useState("time");
+
+    const cancelButton = "destructive";
+    const defaultButton = "primary";
+    const [buttonType, setButtonType] = useState(cancelButton)
+    const [buttonTitle, setButtonTitle] = useState("Hello");
+
+    const headerHiddden = false;
+    const [headerVisible, setHeaderVisible] = useState(headerHiddden);
+    const [headerTitle, setHeaderTitle] = useState("");
+
 
     return (
-        <View activePanel="client-map" id={id} modal={modal}>
-            <Panel style={{ height: "100vh" }} id={"client-map"}>
-                <YMap openModal={openModal}></YMap>
-                <Button size="xl" mode="primary" onClick={changeModal} data-modal="time" style={ButtonStyle}>Поиск фотографов</Button>
-                <BottomBar goToView={goToView} id={"map"}></BottomBar>
+        <View activePanel="client-map" id={id} modal={
+            <MapModal
+                activeModal={activeModal}
+                closeModal={closeModal}
+                changeModal={changeModal}
+            />
+        }>
+            <Panel id={"client-map"}>
+                {headerVisible & <PanelHeader>{headerTitle}</PanelHeader>}
 
+                <YMap openModal={openModal}></YMap>
+
+                <br /><br /><br /><br />
+                {topBar}
+
+                <Button className="map-button" size="xl" mode={buttonType} onClick={changeModal} data-modal={nextModal}>{buttonTitle}</Button>
+                <BottomBar goToView={goToView} id={"map"}></BottomBar>
             </Panel>
         </View>
     );

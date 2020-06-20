@@ -1,6 +1,6 @@
 import React from 'react';
 import '@vkontakte/vkui/dist/vkui.css';
-import { View, Panel, PanelHeader, Button, Div, Title } from '@vkontakte/vkui';
+import { View, Panel, Div, Title } from '@vkontakte/vkui';
 
 import './auth.css'
 import modelPic from '../../img/Model.svg'
@@ -11,6 +11,11 @@ import logo from '../../img/Logo.svg'
 
 const Auth = ({ id, goToView }) => {
 
+    const setRole = (e) => {
+        window.role = e.currentTarget.dataset.role;
+        goToView(e);
+    }
+
 
     return (
         <View activePanel="selection" id={id}>
@@ -20,18 +25,17 @@ const Auth = ({ id, goToView }) => {
 
 
                     <div className={"cards"}>
-                        <div onClick={goToView} data-to="map">
-                            <img src={modelPic}/>
+                        <div onClick={setRole} data-role="model" data-to="map">
+                            <img alt="model" src={modelPic}/>
                             <p>Сниматься</p>
                         </div>
-                        <div>
-                            <img/>
-                            <img src={photographerPic}/>
+                        <div onClick={setRole} data-role="photographer">
+                            <img alt="master"  src={photographerPic}/>
                             <p>Снимать</p>
                         </div>
                     </div>
 
-                  <img className="logo" src={logo}/>
+                  <img className="logo" alt="logo" src={logo}/>
 
                 </Div>
             </Panel>

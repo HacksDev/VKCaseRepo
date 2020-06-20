@@ -36,11 +36,15 @@ const setPhotographers = (openModal) => {
 
 const setCluster = (myMap, openModal) => {
     var clusterer = new window.ymaps.Clusterer({
-        clusterDisableClickZoom: true,
+        clusterDisableClickZoom: false,
     });
 
-    setMe();
-    setPhotographers(openModal);
+    // if (!(placemarks.length > 0)) {
+        setMe();
+        setPhotographers(openModal);
+    // }
+
+
 
     clusterer.add(placemarks);
     myMap.geoObjects.add(clusterer);
@@ -55,10 +59,9 @@ const getRandomPosition = () => {
 }
 
 
-const YMap = ({openModal}) => {
+const YMap = ({ openModal }) => {
 
-    if (document.querySelectorAll("#map > ymaps").length == 0) {
-        placemarks = []
+    if (document.querySelectorAll("#map > ymaps").length === 0) {
         window.ymaps.ready(init);
         function init() {
             const myMap = new window.ymaps.Map("map", {
@@ -74,7 +77,7 @@ const YMap = ({openModal}) => {
 
 
     return (
-        <div id="map" style={{ width: "100%", height: "100vh", position: "absolute" }}></div>
+        <div id="map"></div>
     );
 }
 
