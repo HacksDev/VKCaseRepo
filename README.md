@@ -1,1 +1,1 @@
-#VK Mini App (FotoFlow) for Hackathon 2020
+# VK Mini App (FotoFlow) for Hackathon 2020
