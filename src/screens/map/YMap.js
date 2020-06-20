@@ -1,6 +1,6 @@
 import React from 'react';
-import me from '../../img/me-pin.png'
-import photograph from '../../img/photograph-pin.png'
+import me from '../../img/me-pin.svg'
+import photograph from '../../img/photograph-pin.svg'
 
 const mapCenter = [55.755381, 37.619044];
 
@@ -18,26 +18,29 @@ const setMe = () => {
     }))
 }
 
-const setPhotographers = () => {
+const setPhotographers = (openModal) => {
     for (var i = 0, l = 10; i < l; i++) {
         var placemark = new window.ymaps.Placemark(getRandomPosition(), null, {
             iconLayout: 'default#image',
             iconImageHref: photograph,
-            iconImageSize: [34, 46],
+            iconImageSize: [48, 53],
             iconImageOffset: [-20, -20],
+        });
+        placemark.events.add('click', function () {
+            openModal();
         });
         placemarks.push(placemark);
     }
 }
 
 
-const setCluster = (myMap) => {
+const setCluster = (myMap, openModal) => {
     var clusterer = new window.ymaps.Clusterer({
         clusterDisableClickZoom: true,
     });
 
     setMe();
-    setPhotographers();
+    setPhotographers(openModal);
 
     clusterer.add(placemarks);
     myMap.geoObjects.add(clusterer);
@@ -46,15 +49,16 @@ const setCluster = (myMap) => {
 
 const getRandomPosition = () => {
     return [
-        mapCenter[0] + (Math.random() * 0.6 - 0.3),
-        mapCenter[1] + (Math.random() * 0.8 - 0.4)
+        mapCenter[0] + (Math.random() * 0.3 - 0.15),
+        mapCenter[1] + (Math.random() * 0.4 - 0.2)
     ];
 }
 
 
-const YMap = () => {
+const YMap = ({openModal}) => {
 
-    if (window.isInit === undefined) {
+    if (document.querySelectorAll("#map > ymaps").length == 0) {
+        placemarks = []
         window.ymaps.ready(init);
         function init() {
             const myMap = new window.ymaps.Map("map", {
@@ -63,8 +67,7 @@ const YMap = () => {
                 controls: []
             });
 
-            setCluster(myMap);
-            window.isInit = 1;
+            setCluster(myMap, openModal);
         }
     }
 

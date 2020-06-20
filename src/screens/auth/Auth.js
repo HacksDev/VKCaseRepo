@@ -1,9 +1,12 @@
 import React from 'react';
 import '@vkontakte/vkui/dist/vkui.css';
-import { View, Panel, PanelHeader, Button, Div } from '@vkontakte/vkui';
-import Icon28CameraOutline from '@vkontakte/icons/dist/28/camera_outline';
-import Icon28SmileOutline from '@vkontakte/icons/dist/28/smile_outline';
-import Icon28FireOutline from '@vkontakte/icons/dist/28/fire_outline';
+import { View, Panel, PanelHeader, Button, Div, Title } from '@vkontakte/vkui';
+
+import './auth.css'
+import modelPic from '../../img/Model.svg'
+import photographerPic from '../../img/Photographer.svg'
+import logo from '../../img/Logo.svg'
+
 
 
 const Auth = ({ id, goToView }) => {
@@ -12,13 +15,24 @@ const Auth = ({ id, goToView }) => {
     return (
         <View activePanel="selection" id={id}>
             <Panel id={"selection"}>
-                <PanelHeader>Выбор роли</PanelHeader>
                 <Div>
-                    <Button size="xl" onClick={goToView} data-to="map" before={<Icon28SmileOutline />}>Я хочу найти фотографа</Button>
-                    <br/>
-                    <Button size="xl" before={<Icon28CameraOutline />}>Я фотограф</Button>
-                    <br/>
-                    <Button size="xl" before={<Icon28FireOutline />}>Я мамкин панк-кодер и хочу кушать</Button>
+                    <Title level="1" weight="semibold" style={{ marginTop: "20%", textAlign: "center" }}>Я хочу</Title>
+
+
+                    <div className={"cards"}>
+                        <div onClick={goToView} data-to="map">
+                            <img src={modelPic}/>
+                            <p>Сниматься</p>
+                        </div>
+                        <div>
+                            <img/>
+                            <img src={photographerPic}/>
+                            <p>Снимать</p>
+                        </div>
+                    </div>
+
+                  <img className="logo" src={logo}/>
+
                 </Div>
             </Panel>
         </View>

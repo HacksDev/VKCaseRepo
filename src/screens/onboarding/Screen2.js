@@ -1,22 +1,20 @@
 import React from 'react';
 import '@vkontakte/vkui/dist/vkui.css';
-import { Panel, Button, Placeholder} from '@vkontakte/vkui';
+import { Panel, Button, Placeholder, Title } from '@vkontakte/vkui';
+import pic2 from '../../img/Board2.svg'
+import './onboarding.css'
+
+const Screen2 = ({ id, goToPanel }) => {
 
 
-const Screen1 = ({id, goToView}) => {
-	
-
-	return (
-		<Panel id={id}>
-                <Placeholder
-                    header="Уведомления от сообществ"
-                    action={<Button onClick={goToView} data-to="auth" size="l">Понятно! Стартуем!</Button>}
-                >
-            Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit amet consectetur adipisci[ng] velit, sed quia non numquam [do] eius 
-          </Placeholder>
-        </Panel>
-	);
+  return (
+    <Panel id={id} className={"onboarding"}>
+      <img src={pic2}/>
+      <p>Получай професиональные фото, которые соберут тысячи лайков</p>
+      <Button onClick={goToPanel} data-to="screen3" size="l">Далее</Button>
+    </Panel>
+  );
 }
 
-export default Screen1;
+export default Screen2;
 
