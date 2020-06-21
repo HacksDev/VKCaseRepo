@@ -1,13 +1,14 @@
 import React from 'react';
-import Photographer from './Photographer';
-import { View, Panel } from '@vkontakte/vkui';
+import Person from './Person';
+import { View, Panel, PanelHeader } from '@vkontakte/vkui';
 import BottomBar from '../common/BottomBar';
 
 const ProfileWrapper = ({ goToView }) => {
     return (
         <View activePanel="main">
             <Panel id="main">
-                <Photographer isActive={false}></Photographer>
+                <PanelHeader>Мой профиль</PanelHeader>
+                <Person isActive={false}></Person>
                 <BottomBar goToView={goToView} id={"profile"}></BottomBar>
             </Panel>
         </View>

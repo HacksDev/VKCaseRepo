@@ -1,6 +1,7 @@
 import React from 'react';
 import me from '../../img/me-pin.svg'
 import photograph from '../../img/photograph-pin.svg'
+import client from '../../img/client-pin.svg'
 
 const mapCenter = [55.755381, 37.619044];
 
@@ -18,16 +19,13 @@ const setMe = () => {
     }))
 }
 
-const setPhotographers = (openModal) => {
+const setMainPins = (openModal) => {
     for (var i = 0, l = 10; i < l; i++) {
         var placemark = new window.ymaps.Placemark(getRandomPosition(), null, {
             iconLayout: 'default#image',
-            iconImageHref: photograph,
+            iconImageHref: window.role === "model" ? photograph : client,
             iconImageSize: [48, 53],
             iconImageOffset: [-20, -20],
-        });
-        placemark.events.add('click', function () {
-            openModal();
         });
         placemarks.push(placemark);
     }
@@ -39,10 +37,16 @@ const setCluster = (myMap, openModal) => {
         clusterDisableClickZoom: false,
     });
 
-    // if (!(placemarks.length > 0)) {
+    if (!(placemarks.length > 0)) {
         setMe();
-        setPhotographers(openModal);
-    // }
+        setMainPins(openModal);
+    }
+
+    placemarks.forEach(placemark => {
+        placemark.events.add('click', function () {
+            openModal();
+        });
+    })
 
 
 

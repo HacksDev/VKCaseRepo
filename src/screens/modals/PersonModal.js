@@ -1,21 +1,24 @@
 import React from 'react';
 import {ModalPage, ModalPageHeader, PanelHeaderButton } from '@vkontakte/vkui';
 import Icon24Cancel from '@vkontakte/icons/dist/24/cancel';
-import Photograhper from '../profile/Photographer'
+import Person from '../profile/Person'
 
-const PhotographerModal = ({  changeModal, closeModal }) => {
+const PersonModal = ({  changeModal, closeModal }) => {
+
+    const naming = window.role === "model" ? "Фотограф" : "Клиент"
+
     return (
         <ModalPage id="photograhper"
             onClose={closeModal}
             header={
                 <ModalPageHeader
                     left={<PanelHeaderButton onClick={closeModal}><Icon24Cancel /></PanelHeaderButton>}
-                >Фотограф</ModalPageHeader>
+            >{naming}</ModalPageHeader>
             }
         >
-            <Photograhper isActive={true}></Photograhper>
+            <Person isActive={true}></Person>
         </ModalPage>
     )
 }
 
-export default PhotographerModal ;
+export default PersonModal ;

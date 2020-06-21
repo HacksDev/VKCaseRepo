@@ -6,6 +6,7 @@ import Onboarding from './screens/onboarding/Onboarding';
 import Auth from './screens/auth/Auth';
 import Map from './screens/map/Map';
 import ProfileWrapper from './screens/profile/ProfileWrapper';
+import Status from './screens/map/Status';
 
 const App = () => {
 
@@ -29,6 +30,7 @@ const App = () => {
 			<Auth goToView={goToView} id="auth"></Auth>
 			<Map goToView={goToView} id="map"></Map>
 			<ProfileWrapper goToView={goToView} id="profile"></ProfileWrapper>
+			<Status goToView={goToView} id="status"></Status>
 		</Root>
 	);
 }

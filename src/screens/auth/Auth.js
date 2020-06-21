@@ -29,7 +29,7 @@ const Auth = ({ id, goToView }) => {
                             <img alt="model" src={modelPic}/>
                             <p>Сниматься</p>
                         </div>
-                        <div onClick={setRole} data-role="photographer">
+                        <div onClick={setRole} data-role="photographer" data-to="map">
                             <img alt="master"  src={photographerPic}/>
                             <p>Снимать</p>
                         </div>
